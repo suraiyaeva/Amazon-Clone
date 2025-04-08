@@ -1,11 +1,12 @@
 import { AppBar, Badge, Box, Button, IconButton, TextField, Toolbar, Typography,  } from '@mui/material'
 import { useState } from 'react';
-import { styled } from '@mui/material/styles';
+
 
 
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import Cart from './Cart';
+import Cart from '../pages/Cart';
 import { Search } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 export default function Header(props) {
   const {cart,handleClick} = props;
   // const [searchTerm, setSearchTerm] = useState('');
@@ -17,7 +18,7 @@ export default function Header(props) {
   return (
 
       <Box>
-        <AppBar sx={{ bgcolor: 'black' ,margin:"0px" }}>
+        <AppBar sx={{ bgcolor: 'black' ,margin:"0px" ,position:'static'}}>
           <Toolbar>
             <Typography variant='h4'>amazon</Typography>
             <Box sx={{ display: 'block'}}>
@@ -53,7 +54,7 @@ export default function Header(props) {
               }}
               >Go</Button> */}
             </Box>
-            <Button aria-label="cart"
+            <Link to='/cart'><Button aria-label="cart"
               // sx={{
               //   borderRadius: '50%',
               //   minWidth: 'auto',
@@ -63,12 +64,12 @@ export default function Header(props) {
               //     backgroundColor: 'transparent',
               //   },
               // }}
-              onClick={handleClick}>
+              >  
               <Badge badgeContent={cart.length} color="secondary">
                 <ShoppingCartOutlinedIcon />
               </Badge>
 
-            </Button>
+            </Button></Link>
 
             {/* <Button color='inherit' sx={{ fontSize: '0.7rem', textTransform: 'none', ml: 1.5 }}>Sign In</Button>
             <Button color='inherit' sx={{ fontSize: '0.7rem', textTransform: 'none', mr: 0 }}>Help</Button> */}

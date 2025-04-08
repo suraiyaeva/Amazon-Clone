@@ -1,33 +1,30 @@
 import { useState } from 'react'
-import Body from '../components/Body'
-import Cart from '../components/Cart'
-import Header from '../components/Header'
+import Body from './pages/Body'
+import Cart from './pages/Cart'
+import Header from './components/Header'
 import './App.css'
 import { Box } from '@mui/material'
-import Theme from '../components/Theme'
-import GridComp from '../components/GridComp'
+import {  Route, Routes } from 'react-router-dom'
 
 function App() {
   const [cart,setCart]=useState([])
-  const [show,setShow]=useState(false)
     const addToCart=(product)=>{
         const newCart=[...cart,product]
         setCart(newCart)
     }
-    const handleClick=()=>{
-      setShow((prevShow) => !prevShow);
-    }
-
+    
   return (
-    <Box>
-    {/* <Header cart={cart} handleClick={handleClick}/>
-    <div style={{display:'flex'}}>
-     <Body addToCart={addToCart}/> 
-     {show && ( <Cart cart={cart}/>)}
-     </div> */}
-     <Theme/>
-     {/* <GridComp/> */}
+    <Box sx={{minHeight:'100vh'}}>
+      <Header cart={cart}/>
+      {/* <Body addToCart={addToCart}/> */}
+
+      <Routes>
+           <Route path="/" element={<Body addToCart={addToCart} />} /> 
+           <Route path="/cart" element={<Cart cart={cart} />} />
+        </Routes>  
+      
     </Box>
+
 
   )
 }
